@@ -6,7 +6,7 @@ sudo apt-get install build-essential
 sudo apt-get install virtualenv
 virtualenv -p python3.6 venv
 source venv/bin/activate
-pip3 install Flask tensorflow tensorflow-hub keras numpy librosa webrtcvad requests jsonpickle pandas requests
+pip3 install Flask tensorflow tensorflow-hub keras numpy librosa webrtcvad requests jsonpickle pandas requests pydub
 pip3 install --upgrade google-cloud-speech
 pip3 install redis psycopg2-binary deepspeech
 # For the google speech to text api to work
