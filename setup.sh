@@ -4,6 +4,7 @@ python3 -V
 sudo apt-get install python3-dev
 sudo apt-get install build-essential
 sudo apt-get install virtualenv
+sudo apt-get install ffmpeg
 virtualenv -p python3.6 venv
 source venv/bin/activate
 pip3 install Flask tensorflow tensorflow-hub keras numpy librosa webrtcvad requests jsonpickle pandas requests pydub
