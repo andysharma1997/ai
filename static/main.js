@@ -24,6 +24,8 @@ load = function () {
     <td data-label="Name">
         <input type="checkbox" id="is_verified_`+ chunk.id + `" name="is_verified" ` + check + ` onchange="crud('is_verified')">
         <label for="horns">Is Verified</label></td>
+    <td data-label="CER">`+chunk.cer+`</td>
+    <td data-label="WER">`+chunk.wer+`</td>
   </tr>`;
         }
 

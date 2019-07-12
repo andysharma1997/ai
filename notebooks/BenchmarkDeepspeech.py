@@ -29,6 +29,7 @@ import re
 import soundfile as sf
 from deepspeech import Model, printVersions
 import time
+from jiwer import wer
 
 
 # In[2]:
@@ -141,8 +142,9 @@ def levenshtein(a,b):
             current[j] = min(add, delete, change)
             
     return current[n]
-def wer(realTranscription, deepspeechTranscription):
-    return levenshtein(realTranscription.lower(), deepspeechTranscription.lower()) 
+
+def cer(realTranscription, deepspeechTranscription):
+    return levenshtein(realTranscription.lower(), deepspeechTranscription.lower())/len(realTranscription) 
 
 
 # In[8]:
@@ -260,18 +262,6 @@ def main():
 
 # In[11]:
 
-
-main()
-
-
-# In[75]:
-
-
-CHUNK_PATH
-
-
-# In[ ]:
-
-
-
+if __name__ == "__main__":
+    main()
 

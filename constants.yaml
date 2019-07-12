@@ -6,7 +6,7 @@ emotion:
   model_path: /home/absin/Documents/dev/ai/speech/emotion/models/model.json
   weight_path: /home/absin/Documents/dev/ai/speech/emotion/models/Emotion_Voice_Detection_Model.h5
 deepspeech:
-  model_path: /root/DeepSpeech/models/output_graph.pbmm
-  alphabet_path: /root/DeepSpeech/models/alphabet.txt
-  lm_path: /root/DeepSpeech/models/lm.binary
-  trie_path: /root/DeepSpeech/models/trie
+  model_path: /home/vv/dev/ai/deepspeech-0.5.1-models/output_graph.pbmm
+  alphabet_path: /home/vv/dev/ai/deepspeech-0.5.1-models/alphabet.txt
+  lm_path: /home/vv/dev/ai/deepspeech-0.5.1-models/lm.binary
+  trie_path: /home/vv/dev/ai/deepspeech-0.5.1-models/trie

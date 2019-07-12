@@ -25,7 +25,7 @@ def append_phrases(phrases, product_id):
     sql = 'select * from product_signal where product_id  ='+product_id+' and is_active = true;'
     con = None
     try:
-        con = psycopg2.connect("host='db.talentify.in' dbname='sales' user='postgres' password='cx6ac54nmgGtLD1y'")
+        con = psycopg2.connect("host='35.200.234.61' dbname='sales' user='postgres' password='cx6ac54nmgGtLD1y'")
         cur = con.cursor()
         cur.execute(sql)
         while True:
@@ -51,7 +51,7 @@ def transcribe_emotion(engine, task_id, language, model, loaded_model, pool, tas
         append_phrases(phrases, task_id)
     except:
         print('Fetching speech context failed for: '+task_id)
-    task_folder = '/home/absin/git/sentenceSimilarity/speech/audio/tasks/'
+    task_folder = '/home/vv/dev/tasks/'
     task_file_path = misc.download_file(task_url, task_folder)['abs_path']
     channel_files = [task_file_path]
     # split multichannel to 2 files
