@@ -13,9 +13,10 @@ import tensorflow as tf
 import tensorflow_hub as hub
 import json
 import uuid
-from text import bert_mrpc as bert_api
+#from text import bert_mrpc as bert_api
 import shutil
 import os
+from benchmark import api as ds_benchmark_api
 
 app = Flask(__name__)
 loaded_model = None
@@ -184,6 +185,34 @@ def send_static_audio(path):
 def serve_snippet(count, page):
     data = chunk_api.fetch_verified_chunks(count, page)
     return json.dumps({'response': data})
+
+@app.route('/dschunks/<path:path>')
+def send_static_dsaudio(path):
+    return send_from_directory('/home/vv/dev/ai/benchmark/chunks/', path)
+
+
+@app.route('/ds_chunks/<int:count>/<int:page>')
+def deepspeech_chunk_api(count, page):
+    data = ds_benchmark_api.getEntries(count, page)
+    return json.dumps({'response': data})
+
+@app.route('/ds_update_real_trans/<int:chunk>')
+def deepspeech_chunk_api_update_real_trans(chunk):
+    real_trans = request.args['real_trans']
+    ds_benchmark_api.updateRealTrans(chunk, real_trans)
+    return "Done"
+
+@app.route('/ds_update_is_verified/<int:chunk>')
+def deepspeech_chunk_api_update_is_verified(chunk):
+    is_verified = request.args['is_verified']
+    data = ds_benchmark_api.updateIsVerified(chunk, is_verified)
+    return "Done"
+
+@app.route('/favicon.ico')
+def send_fav():
+    path = 'favicon.ico'
+    return send_from_directory('static/assets/', path)
+
 
 if __name__ == '__main__':
     app.run(debug=True, threaded=True, host='0.0.0.0', port='5010')

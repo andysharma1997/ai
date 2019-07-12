@@ -52,7 +52,7 @@ def perform_vad(file_path, chunk_folder_path, min_chunk_length = 2.5, max_chunk_
     chunk_count = 0
     accumulated_frames = []
     audio, sample_rate, audio_length = read_wave(file_path)
-    assert sample_rate == 8000, "Only 8000Hz input WAV files are supported for now!"
+    assert sample_rate in (8000, 16000)# "Only 8000Hz input WAV files are supported for now!"
     frame_duration_ms = 30
     n = int(sample_rate * (frame_duration_ms / 1000.0) * 2)
     offset = 0

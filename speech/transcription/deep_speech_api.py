@@ -42,20 +42,21 @@ def convert_samplerate(audio_path):
         raise OSError(e.errno, 'SoX not found, use 16kHz files or install it: {}'.format(e.strerror))
     return 16000, np.frombuffer(output, np.int16)
 
-def main(use_lm, audio_path):
+def main(use_lm, audio_path, ds=None):
     start = time.time()
     conversation_blocks = []
     model_path = constants.fetch_contant('deepspeech', 'model_path')
     alphabet_path = constants.fetch_contant('deepspeech', 'alphabet_path')
     print('Loading model from file {}'.format(model_path), file=sys.stderr)
-    ds = Model(model_path, N_FEATURES, N_CONTEXT, alphabet_path, BEAM_WIDTH)
-    print('Loaded accoustic model after: '+str((time.time())-start), file=sys.stderr)
-    if use_lm:
-        lm_path = constants.fetch_contant('deepspeech', 'lm_path')
-        trie_path = constants.fetch_contant('deepspeech', 'trie_path')
-        print('Loading language model from files {} {}'.format(lm_path, trie_path), file=sys.stderr)
-        ds.enableDecoderWithLM(alphabet_path, lm_path, trie_path, LM_ALPHA, LM_BETA)
-        print('Loaded language model after: '+str((time.time())-start), file=sys.stderr)
+    if ds == None:
+        ds = Model(model_path, N_FEATURES, N_CONTEXT, alphabet_path, BEAM_WIDTH)
+        print('Loaded accoustic model after: '+str((time.time())-start), file=sys.stderr)
+        if use_lm:
+            lm_path = constants.fetch_contant('deepspeech', 'lm_path')
+            trie_path = constants.fetch_contant('deepspeech', 'trie_path')
+            print('Loading language model from files {} {}'.format(lm_path, trie_path), file=sys.stderr)
+            ds.enableDecoderWithLM(alphabet_path, lm_path, trie_path, LM_ALPHA, LM_BETA)
+            print('Loaded language model after: '+str((time.time())-start), file=sys.stderr)
     fin = wave.open(audio_path, 'rb')
     fs = fin.getframerate()
     if fs != 16000:

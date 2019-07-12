@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+<script
+  src="assets/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+<script src="assets/semantic.min.js"></script>
+<script src="main.js">
+  
+</script>
+<div id="count">
+<input type="number" id="page_size" name="count" value="10" min="10" onchange="load()"/>
+<input type="number" id="page_no" name="page" value="1" min="1" onchange="load()"/>
+</div>
+<table class="ui celled table">
+  <thead>
+    <tr>
+    <th>id</th>
+    <th>Audio</th>
+    <th>Deepspeech Transcript</th>
+    <th>Truth Transcript</th>
+    <th>Verified</th>
+  </tr></thead>
+  <tbody id='table_body'>
+    
+  </tbody>
+</table>
+
+
+</body>
+</html>
+
