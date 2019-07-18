@@ -223,14 +223,15 @@ def main():
                     for snippet in snippets:
                         text = transcribe(snippet.path, ds)
                         text = re.sub("'","''",text)
-                        url = 'http://192.168.0.100:5010/dschunks/'+re.sub(CHUNK_PATH,'',snippet.path)
-                        sql = "INSERT INTO public.benchmark_deepspeech (created_at, updated_at, audio_url, "
-                        sql += "audio_path, is_verified, ds_transcription, real_transcription, cer, wer, task_id, from_time,"
-                        sql += " to_time) VALUES(now(), now(), '"+url+"', '"+snippet.path+"', false, '"+text+"', NULL, NULL, "
-                        sql += "NULL, "+str(taskId)+", "+str(snippet.from_time)+", "+str(snippet.to_time)+");"
-                        print(sql)
-                        cur.execute(sql)
-                        con.commit()
+                        if len(text) > 0:
+                            url = 'http://192.168.0.100:5010/dschunks/'+re.sub(CHUNK_PATH,'',snippet.path)
+                            sql = "INSERT INTO public.benchmark_deepspeech (created_at, updated_at, audio_url, "
+                            sql += "audio_path, is_verified, ds_transcription, real_transcription, cer, wer, task_id, from_time,"
+                            sql += " to_time) VALUES(now(), now(), '"+url+"', '"+snippet.path+"', false, '"+text+"', NULL, NULL, "
+                            sql += "NULL, "+str(taskId)+", "+str(snippet.from_time)+", "+str(snippet.to_time)+");"
+                            print(sql)
+                            cur.execute(sql)
+                            con.commit()
             except Exception as e:
                 print(e)
             print('Finished '+str(taskId))

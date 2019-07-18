@@ -90,5 +90,3 @@ def computeER(chunkId=None):
     finally:
         if con:
             con.close()
-if __name__ == "__main__":
-    computeER()
