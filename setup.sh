@@ -7,9 +7,7 @@ sudo apt-get install virtualenv
 sudo apt-get install ffmpeg
 virtualenv -p python3.6 venv
 source venv/bin/activate
-pip3 install Flask tensorflow tensorflow-hub keras numpy librosa webrtcvad requests jsonpickle pandas requests pydub
-pip3 install --upgrade google-cloud-speech
-pip3 install redis psycopg2-binary deepspeech
+pip3 install Flask tensorflow tensorflow-hub keras numpy librosa webrtcvad requests jsonpickle pandas requests pydub google-cloud-speech redis psycopg2-binary deepspeech gunicorn jiwer bert-serving-client
 # For the google speech to text api to work
 echo $GOOGLE_APPLICATION_CREDENTIALS
 # should show the path of the json file
@@ -20,7 +18,6 @@ pip3 install jupyter
 # For running web either
 python web.py
 # Or you can also use gunicorn server
-pip3 install gunicorn
 gunicorn --workers 5 -b 0.0.0.0:5010 wsgi:app
 
 # test it with:

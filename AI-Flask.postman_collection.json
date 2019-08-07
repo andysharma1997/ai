@@ -1,12 +1,11 @@
 {
-	"id": "da1b2f92-34a0-5c12-6599-9e98fdb79f83",
+	"id": "94bb11a3-f5f7-79c5-afdf-74e367fdc34f",
 	"name": "AI-Flask",
 	"description": "",
 	"order": [
-		"9af213b1-76df-71c6-9774-f247cc295218",
-		"08b15cc7-986e-662f-7390-d323c15a4e17",
-		"9cbe96a3-7c81-9f08-d41d-ead53c4c8360",
-		"06bc7f75-c3e2-3984-d828-c10fd351c3cd"
+		"c3d7d317-96f9-3cd6-5bb8-5f9885d41b99",
+		"1833c6b7-d569-51c8-b012-b233559aed64",
+		"89f0ef3d-64a7-ca50-7fda-64237b78cb32"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -15,7 +14,111 @@
 	"public": false,
 	"requests": [
 		{
-			"id": "06bc7f75-c3e2-3984-d828-c10fd351c3cd",
+			"id": "1833c6b7-d569-51c8-b012-b233559aed64",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:5010/sentence_similarity?model=USE",
+			"queryParams": [
+				{
+					"key": "model",
+					"value": "USE",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "sentence1",
+					"value": "[\"hi my talking to US Army\",\"Awadhesh bhaiya I am calling you from\",\"EC Council\",\"EC Council\",\"IPL 208\",\"Swastik aaswad upcoming cyber security certification training program\",\"which we are doing in\",\"ok ok before a person died with the details I\",\"don\\u0027\\u0027t understand what a background what exactly\",\"What doing currently?\",\"Academic background how many years of experience do you have?\",\"best of Sharda Sinha\",\"I can get Google in in terms. Of course, you\\u0027\\u0027re looking forward to.\",\"I have just come.\",\"my first introduction to\",\"security\",\"ok\",\"aur chut\",\"Roy\",\"Fantastic sir. I have done your studies into computer science engineering.\",\"yes computer science\",\"Pakistan Tarzan where are you currently working is the same profile check in seon.\",\"linkedin.com\",\"ionic system\",\"Asha software engineering\",\"Fantastic fantastic now yes, you can read outlook on CA certification stock.\",\"Uninstall your enquiry for that only.\",\"Just chat with you. Do you know about EC Council\",\"B Pharmacy Council what is all about\",\"I want to\",\"I understand is equal to EC Council\",\"giving presentations on\",\"ANSI C I S O\",\"backgrounds\",\"security channel\",\"information security\",\"certification body\",\"Absolutely, right. You are absolutely\",\"You are absolutely right. So we are world\\u0027\\u0027s leading cybersecurity certification body.\",\"crystals in two different cyber security certification based on the\",\"interest as well as the experience and experience want to take a\",\"what we have range of certification which\",\"deleting a danger level group\",\"Chocolate Day\",\"technical level Group C x11 group\",\"50 shade with you summer for certification which we are going to cover in Nigeria\",\"1.48 master\",\"class will run for CHS\",\"1/4 drawing for easy essay\",\"classroom\",\"transfer certified ethical hacker\",\"CHF i7 for computer hacking forensic investigator\",\"ecse stands for EC Council certified Security analyst\",\"ANSI CISF certified Chief Information Security Officer\",\"Looking forward to step up.\",\"profile\",\"UN UN step into\",\"cyber security\",\"What I believe you should look at the initial.\",\"certification SCH certified ethical hacker\",\"the best part of this training course\",\"Because EC Council has never done this.\",\"seriously first time\",\"We will be conducting a physical classroom training directly.\",\"in Nigeria\",\"Why should we will be covering so advance course?\",\"which include your\",\"latest version of Ch version 10\",\"ANSI\",\"Bangladesh costly trainer will\",\"convert 20 models in 4 days\",\"Which includes introduction to ethical hacking?\",\"American x\",\"network celebration vulnerability analysis like list\",\"include the most latest phone like iot hacking cloud computing\",\"Geography Hathi mobile\",\"home shopping wireless networks combination of basic\",\"Mausam update\",\"surgical intervention from the subsequent point of view\",\"train will cover change models in 4 days\",\"sofa and objective is not only\",\"Which candidate from certification point of you?\",\"but prepare them\",\"Europe level of their skills training them with the skills and utilising the day-to-day job going forward.\",\"Anyone is looking for the step into cyber security.\",\"proximal there are looking for early promotion\",\"They have write skills in place.\",\"whenever required the Kinshuk is it that helps them to\",\"Can you get promoted?\",\"classroom Wesley the certification matters of lot like you must have definitely had about\",\"speciality in information security domain a lot of people do this\",\"again I am saying\",\"accredited at American national standards Institute\",\"cricket match by other\",\"Global standard bodies innovic\",\"Abhishek date\",\"cyber security certifications\",\"Mention two apart from the four days extensive classroom training program which will be conducted by a certified trainer.\",\"You will you can expect us to offer you sunset of deliverables?\",\"includes one year access to I cross eyeglasses online version of the same\",\"classroom also provide access to wireless for 6 month\",\"Ilabs a platform Vayu login, it pushes you through.\",\"different real time scenario\",\"Ok and you have to solve that out of your learning.\",\"decidedly meant for practicing ethical hacking\",\"Lossy also provide access to digital course material.\",\"we also give you\",\"free subscription one year for online marketing decisions\",\"We will also provide a certificate of attendance.\",\"beyond this we will also give you\",\"exam voucher with the validity of one year\",\"this online remote proctoring exam voucher\",\"aap in which we can utilise to give your exam 1 for Ch version 10\",\"14 CES Pataka\",\"Show its bundle package of online offline training along with syllabus which can utilise for your study.\",\"feature on give your exam and get yourself certified 16 year\",\"Sofia\",\"This is right time and write important because you never know is accounts may come or may not.\",\"In one or two year going forward.\",\"Because you are global strategy.\",\"ok\",\"we want to cover each and every regions open an email to other regions and\",\"super teacher write a person to learn directly from satisfying body and the best part of the entire\",\"Is one ovary you will be learning from a certified body. It\\u0027\\u0027s that means\",\"Google experience is accounting standards of delivery\",\"Which is the highest hospitality industry?\",\"You will be trained with Limited batch size.\",\"Shop no we are not looking for a battle of 5600 people were looking for only 30 candidate.\",\"rights of the reason why because we want a\",\"trainer\",\"Aap to give ample amount of time to a candidate.\",\"Candidate have a good amount of time to interact with the trainer with full access.\",\"show the Deccan of Aquarius\",\"alone in the body subject you have full access for four days without trainer\",\"Get yourself train from him.\",\"can prepare for examination well\",\"Because for the entire package.\",\"currently we are offering Itarsi\",\"deepest point of USD $1300\",\"Standard cost globally is more than $1,700.\",\"5490 we are offering discounted price at this moment.\",\"innovic\",\"Which you can avail this benefits?\",\"I want Chinnu from you.\",\"I am sure under\",\"each and every\",\"information which are shared with you till now\",\"I am equally looking forward.\",\"to understand your inspiration wayforward now on this\",\"I\",\"How should we eat?\",\"Corporation\",\"congrats\",\"15 lakh\",\"Approximately I\\u0027\\u0027m talking about.\",\"480000/12 approximately\",\"Ayega Ayega\",\"projects for\",\"review I can talk with you dear about my project for\",\"Parker\",\"ok ok\",\"ANSI how I can check out how soon is an\",\"flying words starting\",\"Shahid starting from 29th of July it will end up on 1st of August\",\"patient Devaki for classes all the photos of them classes\",\"Yes, yes.\",\"course for this speech class right and Erica Fernandes latest news\",\"XL wallpaper of Ch Park\",\"sign of CHF I will participate fibre\",\"What about last few of you have to be part of that class?\",\"for class\",\"voice voice\",\"because this is my first introduction to\",\"exactly\",\"security\",\"Exactly exactly. How does it work is like I\\u0027\\u0027ll send you the details of your email shared with boss.\",\"kvl\",\"Yes.\",\"Arvind @ yahoo.in\",\"I\\u0027\\u0027ll send you the details of your email, please acknowledgement to see what\\u0027\\u0027s how does it work is light if you if you evaluate and your decide that you want to go out with the training program.\",\"What we expect the candidate to fill up the booking?\",\"homecenter crossword\",\"confirmation\",\"at least 50% payment in advance\",\"address of the person that let us know by when they will be making it\",\"15 days\",\"before the\",\"kygo Alan Walker candidature\",\"To receive the details of mind.\",\"orange\",\"NX 10 minutes, you know how soon I can experience\",\"Panvel\",\"Seriously how soon I can expect your decision on this?\",\"I die.\",\"Subway unexpected\",\"Reply your employment details.\",\"Yes reply whether you are looking forward to go ahead with this or not.\",\"Jimmy Jimmy 24 hours OLX\",\"Ok ok don\\u0027\\u0027t ask this question particularly because there are some ancient you this is going to be limited by shares opportunity.\",\"trust me, we are getting\",\"Chenab response from organisation\",\"right candidate\",\"We are already 70% send off.\",\"Watch always looking at 2 O\\u0027\\u0027clock 30% now.\",\"Wow.\",\"Ananda Ananda want to be no\",\"Russia at the last moment of Robin computer answer that we have closer plot\",\"so that\\u0027\\u0027s what is\",\"Show the disorder you take your decision.\",\"So you will receive my email in the next 10 minutes, please acknowledge my email.\",\"Looking forward to your response by end of the day today.\",\"atomic mass\",\"talking to you\",\"Thank you so much time.\",\"hdfriday\",\"please\",\"my name is Jayesh\",\"Same here same here everyday. Thank you. Bye.\"]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "sentence2",
+					"value": "[\"5 days\",\"confirmation on pricings\",\"the validity of the certification is 3 years\",\"Blended learning\",\"iLabs are provided for practise\",\"APT\",\"Advanced Penetration Testing\",\"Security Professional\",\"Can I enroll tomorrow\",\"How are you doing\",\"next week\",\"certified ethical hacker\",\"DOD\",\"the voucher is valid for 12 months\",\"we look forward to having the proforma\",\"NSA\",\"Thank you\",\"Hi\",\"exam voucher\",\"$\",\"CEH\",\"Market awareness campaigns\",\"Certified Ethical hacker has 20 modules\",\"tomorrow\",\"shall i call you tomorrow\",\"when can I expect the agreement to be done\",\"Distributor\",\"Cyber Forensics\",\"Am I speaking to\",\"technical certification\",\"social engineering\",\"do not have to go to institute\",\"certified incident handler\",\"when is the right time to call you\",\"running out of my Credit\",\"I am busy right now\",\"ethical hacking certification\",\"you want to take only the exams\",\"NICE 2.0\",\"Computer Hacking Forensic Investigator\",\"you get the proforma invoice you share it with the finance team\",\"Process your order\",\"the offer price is valid only till Wednesday\",\"Academia\",\"VETERAN\",\"dollars\",\"AFFAIRS\",\"ECSA\",\"I am sending you the student enrollment form\",\"Bootcamp\",\"can we do it later\",\"receive the credentials\",\"Deliverables\",\"LPT\",\"recorded videos is valid for 12 months\",\"are you studying\",\"training certification course material and voucher\",\"it was nice talking to you\",\"How can I trust you\",\"penetration testing\",\"Can you call me some other time\",\"ANSI\",\"course fee\",\"the training is going to be complete interactive\",\"price is costly\",\"ch\",\"CH\",\"price is high\",\"Reseller\",\"Career Counselor\",\"global cerification\",\"course material ilabs is valid for 6 months\",\"How can I enroll with EC Council\",\"you can enroll yourself before the\",\"thousand\",\"can you just let me know about your profile\",\"Cyber Security Certifications\",\"Is this a good time to talk to you\",\"I am calling from EC COUNCIL\",\"digital book which is valid for 12 months\",\"Email\",\"ethical hacking certification program globally\",\"usd\",\"fee\",\"the finance team let me know\",\"am i talking to\",\"you can get jobs easily\",\"it is in 8 hour per day session 40 hours of interactive session\",\"Good morning\",\"E Course along with exam voucher\",\"Hello\",\"we have a promotional offer going on\",\"Certified Instructors\",\"global certification\",\"Accreditations\",\"it was a pleasure talking to you\",\"need to enroll for the course\",\"pro forma\",\"when can I receive payment link\",\"easy essay\",\"hope to hear from you soon\",\"TCP and IP\",\"the promotion is available till\",\"share the payment receipt\",\"have a nice day\",\"You can choose your sessions from the weekday or a weekend\",\"accredited training Centre\",\"do not have to travel anywhere\",\"EC Council has launched worlds first ethical hacking certification program globally\",\"Price\",\"ilab\",\"recorded videos\",\"the payment has been made and once it reflects the finance team\",\"Certified Network Defender\",\"5 days of live online training from our Global expert\",\"why are you looking for this course\",\"what kind of jobs\",\"I do not like online classes\",\"How Can I get the service from EC Council when compared to others\",\"finance team make the payment\",\"ECSA has actor has 12 modules\",\"Will be releasing kits after final confirmation\",\"American National standard Institute\",\"pentesting\",\"12 models of ECSA\",\"I am sending you an email with the enrolment form and the bank transfer details\",\"purchase the exam prep module\",\"I will not be able to pay\",\"proforma\",\"busy\",\"today\",\"EC Council Certified Security Analyst\",\"special student discount offer\",\"denial of service\",\"Sending an Proposal and Agreement through mail\",\"are you working professional\",\"this is completely online interactive LED training\",\"cost\",\"cyber security\",\"Ilabs which is online cyber range\",\"live online instructor led training\",\"this course will be a growth hack for your career\",\"I am not fine with online classes\",\"how the ethical hacking is different from others\",\"IWeek\",\"the pro forma invoice for registration of enrollment\",\"the digital signature required of yours\",\"You had enquired on our website about\",\"online\",\"risk\",\"methodology\",\"cyber security profession\"]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1565172704941,
+			"name": "Sentence Similarity Generic",
+			"description": "",
+			"collectionId": "94bb11a3-f5f7-79c5-afdf-74e367fdc34f",
+			"responses": []
+		},
+		{
+			"id": "89f0ef3d-64a7-ca50-7fda-64237b78cb32",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:5010/sentence_similarity?model=USE",
+			"queryParams": [
+				{
+					"key": "model",
+					"value": "USE",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "sentence1",
+					"value": "[\"Good morning\",\"Good evening\",\"Good night\"]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "sentence2",
+					"value": "[\"Good morning\",\"Good evening\",\"Good night\"]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1565172141587,
+			"name": "Sentence Similarity Generic Small",
+			"description": "",
+			"collectionId": "94bb11a3-f5f7-79c5-afdf-74e367fdc34f",
+			"responses": []
+		},
+		{
+			"id": "c3d7d317-96f9-3cd6-5bb8-5f9885d41b99",
 			"headers": "",
 			"headerData": [],
 			"url": "http://35.200.228.189:5010/transcibe?task_id=17917498&language=en-IN&model=False&engine=deepspeech",
@@ -53,7 +156,7 @@
 			"pathVariableData": [],
 			"preRequestScript": null,
 			"method": "GET",
-			"collectionId": "da1b2f92-34a0-5c12-6599-9e98fdb79f83",
+			"collectionId": "94bb11a3-f5f7-79c5-afdf-74e367fdc34f",
 			"data": null,
 			"dataMode": "params",
 			"name": "transcription",
@@ -65,115 +168,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"collection_id": "da1b2f92-34a0-5c12-6599-9e98fdb79f83"
-		},
-		{
-			"id": "08b15cc7-986e-662f-7390-d323c15a4e17",
-			"headers": "",
-			"headerData": [],
-			"url": "35.200.228.189:5010/sentence_similarity_bert",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "POST",
-			"data": [
-				{
-					"key": "sentence1",
-					"value": "Hello",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "sentence2",
-					"value": "Good bye",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				}
-			],
-			"dataMode": "params",
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1559199597983,
-			"name": "Sentence Similarity  Bert",
-			"description": "",
-			"collectionId": "da1b2f92-34a0-5c12-6599-9e98fdb79f83",
-			"responses": []
-		},
-		{
-			"id": "9af213b1-76df-71c6-9774-f247cc295218",
-			"headers": "",
-			"headerData": [],
-			"url": "35.200.228.189:5010/sentence_similarity",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "POST",
-			"data": [
-				{
-					"key": "sentence1",
-					"value": "Hello",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "sentence2",
-					"value": "Good bye",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				}
-			],
-			"dataMode": "params",
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1559199956035,
-			"name": "Sentence Similarity",
-			"description": "",
-			"collectionId": "da1b2f92-34a0-5c12-6599-9e98fdb79f83",
-			"responses": []
-		},
-		{
-			"id": "9cbe96a3-7c81-9f08-d41d-ead53c4c8360",
-			"headers": "",
-			"headerData": [],
-			"url": "127.0.0.1:5010/sentence_similarity_many",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "POST",
-			"data": [
-				{
-					"key": "sentence",
-					"value": "Hello",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "sentences",
-					"value": "[\"Good morning\",\"Good evening\",\"Good night\"]",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				}
-			],
-			"dataMode": "params",
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1559201187150,
-			"name": "Sentence Similarity  Many",
-			"description": "",
-			"collectionId": "da1b2f92-34a0-5c12-6599-9e98fdb79f83",
-			"responses": []
+			"collection_id": "94bb11a3-f5f7-79c5-afdf-74e367fdc34f"
 		}
 	]
 }
