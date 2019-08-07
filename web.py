@@ -6,6 +6,7 @@ from text import sentence_similarity as sentence_similarity_api
 from speech.analysis import main as analysis_api
 from speech.emotion import emotion_api
 from speech.utils import misc
+from speech.utils import objects
 import jsonpickle
 import redis
 from speech.transcription.transfer_learning import chunk_data_api as chunk_api
@@ -17,20 +18,24 @@ import uuid
 import shutil
 import os
 from benchmark import api as ds_benchmark_api
+from bert_serving.client import BertClient
+import numpy as np
+from flask import Response
+import time
 
 app = Flask(__name__)
 loaded_model = None
 pool = redis.ConnectionPool(host='localhost', port=6379, db=0)
-embed = g = session = messages = output = None
+embed = g = session = messages = output = bc =None
 
-def perform_graph_setup():
-    global embed,g,session,messages,output
+def perform_graph_setup_andy():
+    global embed,g,session,messages,output,bc
     print("Loading tensorflow graph for the first request")
     module_url = "https://tfhub.dev/google/universal-sentence-encoder-large/3"
     os.environ['TFHUB_CACHE_DIR']='/home/absin/tfhub'
     #if os.path.exists(os.environ['TFHUB_CACHE_DIR']) and os.path.isdir(os.environ['TFHUB_CACHE_DIR']):
     #    shutil.rmtree(os.environ['TFHUB_CACHE_DIR'])
-    #os.makedirs(os.environ['TFHUB_CACHE_DIR'])
+    #os.makedirs(os.:['TFHUB_CACHE_DIR'])
     embed = hub.Module(module_url)
     print("While first request loading hub module downloaded..")
     g = tf.get_default_graph()
@@ -38,33 +43,40 @@ def perform_graph_setup():
     session.run([tf.global_variables_initializer(), tf.tables_initializer()])
     messages = tf.placeholder(dtype=tf.string, shape=[None])
     output = embed(messages)
+    bc = BertClient(ip='192.168.0.199')
     print('Successfully initialized sentence similarity variables')
 
-@app.route("/sentence_similarity_many", methods=['GET', 'POST'])
-def sentence_similarity_many():
-    global embed,g,session,messages,output
+@app.route("/sentence_similarity",methods=["POST","GET"])
+def check_smilarity_andy():
+    global embed,g,session,messages,output,bc
+    start = time.time()
     if g == None:
-        perform_graph_setup()
-    sentence = request.form['sentence']
-    sentences = request.form['sentences']
-    return sentence_similarity_api.fast_sentence_similarity_many(sentence, sentences, g, output, session, messages)
+        start=time.time()
+        perform_graph_setup_andy()
+        graph_load_time=time.time()-start
+        print("\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print("Time taken to load graph="+str(time.time() - start))
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+    list1=request.form.getlist('sentence1')
+    list2=request.form.getlist('sentence2')
+    arg=request.args.get('model')
+    listx=list1[0].split("[")
+    listy=listx[1].split("]")
+    listz=listy[0].split(",")
+    input_sentences1=[]
+    for item in listz:
+        input_sentences1.append(item.replace('"',""))
+    listx1=list2[0].split("[")
+    listy1=listx1[1].split("]")
+    listz1=listy1[0].split(",")
+    input_sentences2=[]
+    for item in listz1:
+        input_sentences2.append(item.replace('"',""))
+    if arg == "USE":
+        return sentence_similarity_api.use(input_sentences1,input_sentences2,embed,g,session,messages,output)
+    elif arg=="BERT":
+        return jsonify(sentence_similarity_api.bert(input_sentences1,input_sentences2,bc))
 
-@app.route("/sentence_similarity", methods=['GET', 'POST'])
-def sentence_similarity():
-    global embed,g,session,messages,output
-    if g == None:
-        perform_graph_setup()
-    sentence1 = request.form['sentence1']
-    sentence2 = request.form['sentence2']
-    return sentence_similarity_api.fast_sentence_similarity(sentence1, sentence2, g, output, session, messages)
-
-@app.route('/sentence_similarity_bert', methods=['GET', 'POST'])
-def sentence_similarity_bert():
-    sentence1 = request.form["sentence1"]
-    sentence2 = request.form["sentence2"]
-    semantic_similarity = bert_api.predict(sentence1, sentence2)
-    print('Sentence1: {}\n Sentence2: {}\nSimilarity: {}'.format(sentence1, sentence2, semantic_similarity['similarity']))
-    return jsonpickle.encode(semantic_similarity)
 
 @app.route("/transcibe", methods=['GET', 'POST'])
 def transcibe():
@@ -212,6 +224,8 @@ def deepspeech_chunk_api_update_is_verified(chunk):
 def send_fav():
     path = 'favicon.ico'
     return send_from_directory('static/assets/', path)
+
+
 
 
 if __name__ == '__main__':
