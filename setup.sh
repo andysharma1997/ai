@@ -5,9 +5,31 @@ sudo apt-get install python3-dev
 sudo apt-get install build-essential
 sudo apt-get install virtualenv
 sudo apt-get install ffmpeg
+sudo apt-get install redis-server
+
 virtualenv -p python3.6 venv
 source venv/bin/activate
-pip3 install Flask tensorflow tensorflow-hub keras numpy librosa webrtcvad requests jsonpickle pandas requests pydub google-cloud-speech redis psycopg2-binary deepspeech gunicorn jiwer bert-serving-client
+
+pip3 install Flask 
+pip3 install tensorflow 
+pip3 install tensorflow-hub 
+pip3 install keras 
+pip3 install numpy 
+pip3 install librosa 
+pip3 install webrtcvad 
+pip3 install requests 
+pip3 install jsonpickle 
+pip3 install pandas 
+pip3 install requests 
+pip3 install pydub 
+pip3 install google-cloud-speech 
+pip3 install redis 
+pip3 install psycopg2-binary 
+pip3 install deepspeech 
+pip3 install gunicorn 
+pip3 install jiwer 
+pip3 install bert-serving-client
+
 # For the google speech to text api to work
 echo $GOOGLE_APPLICATION_CREDENTIALS
 # should show the path of the json file
@@ -71,7 +93,6 @@ ffmpeg -i 17916689_002.wav -i 17916689_002.wav -filter_complex '[0:0][1:0]concat
 # We are using Redis to ensure a rate check to the transcription engine
 # The redis only stores time at which every request is made.
 
-sudo apt-get install redis-server
 
 drop
 	table
