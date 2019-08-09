@@ -7,6 +7,7 @@ from speech.analysis import main as analysis_api
 from speech.emotion import emotion_api
 from speech.utils import misc
 from speech.utils import objects
+from text import emotion_detection as emotion_detection_api
 import jsonpickle
 import redis
 from speech.transcription.transfer_learning import chunk_data_api as chunk_api
@@ -14,6 +15,7 @@ import tensorflow as tf
 import tensorflow_hub as hub
 import json
 import uuid
+from keras import backend as K
 #from text import bert_mrpc as bert_api
 import shutil
 import os
@@ -26,13 +28,14 @@ import time
 app = Flask(__name__)
 loaded_model = None
 pool = redis.ConnectionPool(host='localhost', port=6379, db=0)
-embed = g = session = messages = output = bc =None
+embed = None
+model=None
 
 def perform_graph_setup_andy():
     global embed,g,session,messages,output,bc
     print("Loading tensorflow graph for the first request")
     module_url = "https://tfhub.dev/google/universal-sentence-encoder-large/3"
-    os.environ['TFHUB_CACHE_DIR']='/home/absin/tfhub'
+    os.environ['TFHUB_CACHE_DIR']='/home/andy/tfhub'
     #if os.path.exists(os.environ['TFHUB_CACHE_DIR']) and os.path.isdir(os.environ['TFHUB_CACHE_DIR']):
     #    shutil.rmtree(os.environ['TFHUB_CACHE_DIR'])
     #os.makedirs(os.:['TFHUB_CACHE_DIR'])
@@ -43,7 +46,7 @@ def perform_graph_setup_andy():
     session.run([tf.global_variables_initializer(), tf.tables_initializer()])
     messages = tf.placeholder(dtype=tf.string, shape=[None])
     output = embed(messages)
-    bc = BertClient(ip='192.168.0.199')
+    bc = BertClient(ip='192.168.0.101')
     print('Successfully initialized sentence similarity variables')
 
 @app.route("/sentence_similarity",methods=["POST","GET"])
@@ -77,6 +80,34 @@ def check_smilarity_andy():
     elif arg=="BERT":
         return jsonify(sentence_similarity_api.bert(input_sentences1,input_sentences2,bc))
 
+#this service makes use of persistant tf.session so if multiple tf.sessions are opend without closing the previce ones this service will fail
+#have to think a solution for that
+@app.route("/emotion_detection",methods=["POST","GET"])
+def emotion_dection_trainModel():
+    global embed,model
+    if(embed==None):
+        module_url = "https://tfhub.dev/google/universal-sentence-encoder-large/3"
+        embed=hub.Module(module_url)
+    if model==None:
+        print('Setting up model for emotion recognition')
+        model=emotion_detection_api.neural_network_setup(embed)
+        session_emotion_detect = tf.Session()
+        K.set_session(session_emotion_detect)
+        session_emotion_detect.run(tf.global_variables_initializer())
+        session_emotion_detect.run(tf.tables_initializer())
+        model.load_weights('./model.h5')
+        print('Finsihed model setupfor  emotion recognition')
+    list1=request.form.getlist('sentences')
+    listx=list1[0].split("[")
+    listy=listx[1].split("]")
+    listz=listy[0].split(",")
+    input_sentences1=[]
+    for item in listz:
+        input_sentences1.append(item.replace('"',""))
+    new_text=input_sentences1
+    new_text = np.array(new_text, dtype=object)[:, np.newaxis]
+    emotions_to_print = emotion_detection_api.make_prediction(new_text,model)
+    return jsonify(emotions_to_print)
 
 @app.route("/transcibe", methods=['GET', 'POST'])
 def transcibe():
@@ -229,4 +260,4 @@ def send_fav():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, threaded=True, host='0.0.0.0', port='5010')
+    app.run(debug=True, threaded=True, host='localhost', port='5010')

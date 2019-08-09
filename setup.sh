@@ -7,7 +7,14 @@ sudo apt-get install virtualenv
 sudo apt-get install ffmpeg
 virtualenv -p python3.6 venv
 source venv/bin/activate
+
+#For emotion detection using USE
+pip install PyYAML
+pip3 install --quiet "tensorflow>=1.7"
+pip3 install --quiet tensorflow-hub
+pip3 install seaborn
 pip3 install Flask tensorflow tensorflow-hub keras numpy librosa webrtcvad requests jsonpickle pandas requests pydub google-cloud-speech redis psycopg2-binary deepspeech gunicorn jiwer bert-serving-client
+
 # For the google speech to text api to work
 echo $GOOGLE_APPLICATION_CREDENTIALS
 # should show the path of the json file

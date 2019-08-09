@@ -4,7 +4,6 @@
 """ssh vv@xxx.xxx.xxx.xxx"""
 """source andy/venv/bin/activate"""
 """bert-serving-start -model_dir andy/tmp/multi_cased_L-12_H-768_A-12"""
-from bert_serving.client import BertClient
 import tensorflow as tf
 import tensorflow_hub as hub
 import numpy as np
@@ -16,7 +15,9 @@ import json
 import time
 import os
 import redis
-import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import re
 
 def sentence_embedding_andy(sentence1, g, output, session, messages):
     input_sentences = []
@@ -28,13 +29,10 @@ def sentence_embedding_andy(sentence1, g, output, session, messages):
     sentencesEmbeddings = np.array(message_embeddings)[0:num_sent]
     return sentencesEmbeddings
 
-
-
 def setup_all_andy(sentence1,sentence2,embed,g,session,messages,output):
     start = time.time()
     s1=sentence1
     s2=sentence2
-    print(str(g)+'61')
     embeeding1=sentence_embedding_andy(s1,g,output,session, messages)
     embeeding2=sentence_embedding_andy(s2,g,output,session, messages)
     embedding_time=time.time()-start
@@ -76,7 +74,6 @@ def use(s1,s2,embed,g,session,messages,output):
     print("Time taken for computing inner product="+str(time.time()-start))
     print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
     return jsonify(arr1)
-
 
 def bert(sentence1, sentence2, bc):
     result = []
