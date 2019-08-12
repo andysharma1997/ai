@@ -10,3 +10,13 @@ deepspeech:
   alphabet_path: /home/vv/dev/ai/deepspeech-0.5.1-models/alphabet.txt
   lm_path: /home/vv/dev/ai/deepspeech-0.5.1-models/lm.binary
   trie_path: /home/vv/dev/ai/deepspeech-0.5.1-models/trie
+
+emotion: {threshold: 0.1,
+                    model_path: "./model.h5",
+                    db_host: '35.200.234.61',
+                    db_dbname: 'sales',
+                    db_user: 'postgres',
+                    db_password: 'cx6ac54nmgGtLD1y',
+                    frac: 1.0,
+
+                    }

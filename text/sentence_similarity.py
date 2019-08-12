@@ -34,11 +34,9 @@ def setup_all_andy(sentence1,sentence2,embed,g,session,messages,output):
     start = time.time()
     s1=sentence1
     s2=sentence2
-    print(str(g)+'61')
     embeeding1=sentence_embedding_andy(s1,g,output,session, messages)
     embeeding2=sentence_embedding_andy(s2,g,output,session, messages)
     embedding_time=time.time()-start
-    print("Time taken for embedding="+str(time.time() - start))
     return embeeding1,embeeding2
 
 def use(s1,s2,embed,g,session,messages,output):

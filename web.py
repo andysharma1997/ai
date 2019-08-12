@@ -7,6 +7,7 @@ from speech.analysis import main as analysis_api
 from speech.emotion import emotion_api
 from speech.utils import misc
 from speech.utils import objects
+from text import emotion_detection as emotion_detection_api
 import jsonpickle
 import redis
 from speech.transcription.transfer_learning import chunk_data_api as chunk_api
@@ -14,51 +15,45 @@ import tensorflow as tf
 import tensorflow_hub as hub
 import json
 import uuid
+from keras import backend as K
 #from text import bert_mrpc as bert_api
 import shutil
 import os
-from benchmark import api as ds_benchmark_api
+# from benchmark import api as ds_benchmark_api
 from bert_serving.client import BertClient
 import numpy as np
 from flask import Response
 import time
-
 app = Flask(__name__)
 loaded_model = None
 pool = redis.ConnectionPool(host='localhost', port=6379, db=0)
-embed = g = session = messages = output = bc =None
+embed=g=session=messages=output=bc=None
+model=None
+bc = BertClient("192.168.0.199")
 
 def perform_graph_setup_andy():
     global embed,g,session,messages,output,bc
     print("Loading tensorflow graph for the first request")
-    module_url = "https://tfhub.dev/google/universal-sentence-encoder-large/3"
-    os.environ['TFHUB_CACHE_DIR']='/home/absin/tfhub'
-    #if os.path.exists(os.environ['TFHUB_CACHE_DIR']) and os.path.isdir(os.environ['TFHUB_CACHE_DIR']):
-    #    shutil.rmtree(os.environ['TFHUB_CACHE_DIR'])
-    #os.makedirs(os.:['TFHUB_CACHE_DIR'])
+    module_url="/home/andy/tf_module"
+    os.environ['TFHUB_CACHE_DIR']='/home/andy/tfhub'
+    # if os.path.exists(os.environ['TFHUB_CACHE_DIR']) and os.path.isdir(os.environ['TFHUB_CACHE_DIR']):
+    #     shutil.rmtree(os.environ['TFHUB_CACHE_DIR'])
+    #     os.makedirs(os.environ['TFHUB_CACHE_DIR'])
     embed = hub.Module(module_url)
     print("While first request loading hub module downloaded..")
     g = tf.get_default_graph()
     session = tf.Session(graph=g)
     session.run([tf.global_variables_initializer(), tf.tables_initializer()])
     messages = tf.placeholder(dtype=tf.string, shape=[None])
+
     output = embed(messages)
-    bc = BertClient(ip='192.168.0.199')
-    print('Successfully initialized sentence similarity variables')
 
 @app.route("/sentence_similarity",methods=["POST","GET"])
 def check_smilarity_andy():
     global embed,g,session,messages,output,bc
-    start = time.time()
-    if g == None:
-        start=time.time()
-        perform_graph_setup_andy()
-        graph_load_time=time.time()-start
-        print("\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        print("Time taken to load graph="+str(time.time() - start))
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
     list1=request.form.getlist('sentence1')
     list2=request.form.getlist('sentence2')
+    print(list1)
     arg=request.args.get('model')
     listx=list1[0].split("[")
     listy=listx[1].split("]")
@@ -73,9 +68,44 @@ def check_smilarity_andy():
     for item in listz1:
         input_sentences2.append(item.replace('"',""))
     if arg == "USE":
+        start = time.time()
+        if g == None:
+            start=time.time()
+            perform_graph_setup_andy()
+            graph_load_time=time.time()-start
+            print("\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            print("Time taken to load graph="+str(time.time() - start))
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
         return sentence_similarity_api.use(input_sentences1,input_sentences2,embed,g,session,messages,output)
     elif arg=="BERT":
         return jsonify(sentence_similarity_api.bert(input_sentences1,input_sentences2,bc))
+
+# this service makes use of persistant tf.session so if multiple tf.sessions are opend without closing the previce ones this service will fail
+# have to think a solution for that
+@app.route("/emotion_detection",methods=["POST","GET"])
+def emotion_dection_trainModel():
+    global embed,model
+    if(embed==None):
+        module_url = "/home/andy/tf_module"
+        embed=hub.Module(module_url)
+    if model==None:
+        model=emotion_detection_api.neural_network_setup(embed)
+        session_emotion_detect = tf.Session()
+        K.set_session(session_emotion_detect)
+        session_emotion_detect.run(tf.global_variables_initializer())
+        session_emotion_detect.run(tf.tables_initializer())
+        model.load_weights('./model.h5')
+    list1=request.form.getlist('sentences')
+    listx=list1[0].split("[")
+    listy=listx[1].split("]")
+    listz=listy[0].split(",")
+    input_sentences1=[]
+    for item in listz:
+        input_sentences1.append(item.replace('"',""))
+    new_text=input_sentences1
+    new_text = np.array(new_text, dtype=object)[:, np.newaxis]
+    emotions_to_print = emotion_detection_api.make_prediction(new_text,model)
+    return jsonify(emotions_to_print)
 
 
 @app.route("/transcibe", methods=['GET', 'POST'])
@@ -224,8 +254,6 @@ def deepspeech_chunk_api_update_is_verified(chunk):
 def send_fav():
     path = 'favicon.ico'
     return send_from_directory('static/assets/', path)
-
-
 
 
 if __name__ == '__main__':
