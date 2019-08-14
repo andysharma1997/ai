@@ -34,11 +34,11 @@ bc = BertClient("192.168.0.199")
 def perform_graph_setup_andy():
     global embed,g,session,messages,output,bc
     print("Loading tensorflow graph for the first request")
-    module_url="/home/andy/tf_module"
-    os.environ['TFHUB_CACHE_DIR']='/home/andy/tfhub'
-    # if os.path.exists(os.environ['TFHUB_CACHE_DIR']) and os.path.isdir(os.environ['TFHUB_CACHE_DIR']):
-    #     shutil.rmtree(os.environ['TFHUB_CACHE_DIR'])
-    #     os.makedirs(os.environ['TFHUB_CACHE_DIR'])
+    module_url="https://tfhub.dev/google/universal-sentence-encoder-large/3"
+    os.environ['TFHUB_CACHE_DIR']='./tfhub'
+    if os.path.exists(os.environ['TFHUB_CACHE_DIR']) and os.path.isdir(os.environ['TFHUB_CACHE_DIR']):
+        shutil.rmtree(os.environ['TFHUB_CACHE_DIR'])
+        os.makedirs(os.environ['TFHUB_CACHE_DIR'])
     embed = hub.Module(module_url)
     print("While first request loading hub module downloaded..")
     g = tf.get_default_graph()
@@ -86,7 +86,7 @@ def check_smilarity_andy():
 def emotion_dection_trainModel():
     global embed,model
     if(embed==None):
-        module_url = "/home/andy/tf_module"
+        module_url = "https://tfhub.dev/google/universal-sentence-encoder-large/3"
         embed=hub.Module(module_url)
     if model==None:
         model=emotion_detection_api.neural_network_setup(embed)
