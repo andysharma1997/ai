@@ -51,7 +51,7 @@ def transcribe_emotion(engine, task_id, language, model, loaded_model, pool, tas
         append_phrases(phrases, task_id)
     except:
         print('Fetching speech context failed for: '+task_id)
-    task_folder = '/home/vv/dev/tasks/'
+    task_folder = '/home/anurag/dev/tasks/'
     task_file_path = misc.download_file(task_url, task_folder)['abs_path']
     channel_files = [task_file_path]
     # split multichannel to 2 files
@@ -118,6 +118,7 @@ def transcribe_emotion(engine, task_id, language, model, loaded_model, pool, tas
                 print("Emotion snippet from " + str(emotion_snip.from_time) + " to: "
     						+ str(emotion_snip.to_time) + " not found")
     #print(jsonpickle.encode(conversation_blocks))
+    misc.delete_file(task_folder,task_id)
     return conversation_blocks
 
 def emotion(task_url, task_id, loaded_model):

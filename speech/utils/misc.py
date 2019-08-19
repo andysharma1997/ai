@@ -3,6 +3,7 @@ from pathlib import Path
 import shutil
 import requests
 import os
+import shutil
 requests.adapters.DEFAULT_RETRIES = 50
 import time
 from shutil import copy2
@@ -24,6 +25,20 @@ def split_stereo(file_path, destination_folder = 'NA'):
     wavfile.write(split_file_1, fs, data[:, 0])   # saving first column which corresponds to channel 1
     wavfile.write(split_file_2, fs, data[:, 1])   # saving second column which corresponds to channel 2
     return [split_file_1, split_file_2]
+
+def delete_file(file_path,task_id):
+    shutil.rmtree(file_path+task_id)
+    list_of_files = os.listdir(file_path+'chunks/')
+    for item in list_of_files:
+        if item.startswith(task_id):
+            os.remove(os.path.join(file_path+'chunks/', item))
+
+    list_of_task_files = os.listdir(file_path)
+    for item in list_of_task_files:
+        if item.startswith(task_id):
+            os.remove(os.path.join(file_path, item))
+
+
 
 def download_file(url, folder):
     success = False
