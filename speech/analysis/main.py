@@ -19,6 +19,7 @@ import time
 import concurrent.futures
 from concurrent.futures import ThreadPoolExecutor
 import psycopg2
+from utils import constants
 requests.adapters.DEFAULT_RETRIES = 50
 
 def append_phrases(phrases, product_id):
@@ -51,7 +52,7 @@ def transcribe_emotion(engine, task_id, language, model, loaded_model, pool, tas
         append_phrases(phrases, task_id)
     except:
         print('Fetching speech context failed for: '+task_id)
-    task_folder = '/home/anurag/dev/tasks/'
+    task_folder = constants.fetch_contant_single('task_folder')
     task_file_path = misc.download_file(task_url, task_folder)['abs_path']
     channel_files = [task_file_path]
     # split multichannel to 2 files

@@ -1,4 +1,5 @@
 chunk_folder_path: /home/absin/Documents/dev/sentenceSimilarity/speech/transcription/transfer_learning/chunks/
+task_folder: '/home/vv/dev/tasks/'
 host: db.talentify.in
 password: cx6ac54nmgGtLD1y
 stereo_folder: /home/absin/Documents/dev/sentenceSimilarity/speech/transcription/transfer_learning/calls_dual/

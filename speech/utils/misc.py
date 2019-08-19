@@ -33,10 +33,7 @@ def delete_file(file_path,task_id):
         if item.startswith(task_id):
             os.remove(os.path.join(file_path+'chunks/', item))
 
-    list_of_task_files = os.listdir(file_path)
-    for item in list_of_task_files:
-        if item.startswith(task_id):
-            os.remove(os.path.join(file_path, item))
+    os.remove(file_path+task_id+'.wav')
 
 
 
