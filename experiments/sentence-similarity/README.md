@@ -1,15 +1,21 @@
-````git clone https://github.com/pytorch/fairseq.git```
-```cd fairseq/```
-```pip3 install regex```
-```pip3 install fairseq```
+````
+git clone https://github.com/pytorch/fairseq.git
+cd fairseq/
+pip3 install regex
+pip3 install fairseq
+```
 
 
-```wget https://gist.githubusercontent.com/W4ngatang/60c2bdb54d156a41194446737ce03e2e/raw/17b8dd0d724281ed7c3b2aeeda662b92809aadd5/download_glue_data.py```
-```python download_glue_data.py --data_dir glue_data --tasks STS```
+```
+wget https://gist.githubusercontent.com/W4ngatang/60c2bdb54d156a41194446737ce03e2e/raw/17b8dd0d724281ed7c3b2aeeda662b92809aadd5/download_glue_data.py
+python download_glue_data.py --data_dir glue_data --tasks STS
+```
 
 
 
-```./examples/roberta/preprocess_GLUE_tasks.sh glue_data STS-B```
+```
+./examples/roberta/preprocess_GLUE_tasks.sh glue_data STS-B
+```
 
 
 
