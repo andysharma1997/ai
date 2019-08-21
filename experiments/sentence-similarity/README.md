@@ -1,4 +1,4 @@
-````
+```
 git clone https://github.com/pytorch/fairseq.git
 cd fairseq/
 pip3 install regex
