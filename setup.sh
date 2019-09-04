@@ -10,25 +10,28 @@ sudo apt-get install redis-server
 virtualenv -p python3.6 venv
 source venv/bin/activate
 
-pip3 install Flask 
-pip3 install tensorflow 
-pip3 install tensorflow-hub 
-pip3 install keras 
-pip3 install numpy 
-pip3 install librosa 
-pip3 install webrtcvad 
-pip3 install requests 
-pip3 install jsonpickle 
-pip3 install pandas 
-pip3 install requests 
-pip3 install pydub 
-pip3 install google-cloud-speech 
-pip3 install redis 
-pip3 install psycopg2-binary 
-pip3 install deepspeech 
-pip3 install gunicorn 
-pip3 install jiwer 
+pip3 install Flask
+pip3 install tensorflow
+pip3 install tensorflow-hub
+pip3 install keras
+pip3 install numpy
+pip3 install librosa
+pip3 install webrtcvad
+pip3 install requests
+pip3 install jsonpickle
+pip3 install pandas
+pip3 install requests
+pip3 install pydub
+pip3 install google-cloud-speech
+pip3 install redis
+pip3 install psycopg2-binary
+pip3 install deepspeech
+pip3 install gunicorn
+pip3 install jiwer
 pip3 install bert-serving-client
+
+pip3 install websockets pyopenssl
+
 
 # For the google speech to text api to work
 echo $GOOGLE_APPLICATION_CREDENTIALS

@@ -29,7 +29,6 @@ loaded_model = None
 pool = redis.ConnectionPool(host='localhost', port=6379, db=0)
 embed=g=session=messages=output=bc=None
 model=None
-bc = BertClient("192.168.0.199")
 
 def perform_graph_setup_andy():
     global embed,g,session,messages,output,bc
@@ -255,6 +254,5 @@ def send_fav():
     path = 'favicon.ico'
     return send_from_directory('static/assets/', path)
 
-
 if __name__ == '__main__':
-    app.run(debug=True, threaded=True, host='0.0.0.0', port='5010')
+    app.run(debug=True, threaded=True, host='0.0.0.0', port='5010',ssl_context='adhoc')
