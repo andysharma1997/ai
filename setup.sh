@@ -114,3 +114,10 @@ create
 		is_verified boolean );
 alter table chunks add column is_seen boolean;
 alter table chunks add column source varchar;
+
+
+ps -ef | grep python
+cat /proc/10874/limits
+cd /proc/10874/fd
+ls -l | wc -l
+prlimit --pid 10888 --nofile=8192:16000
